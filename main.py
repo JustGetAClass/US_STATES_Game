@@ -17,12 +17,9 @@ while score < 50:
     state_answer = screen.textinput(title=f"Score:{score}/50", prompt="Can you Guess all the 50 states?").title()
     if state_answer == "Exit":
         # states to learn (not guessed)
-        states_to_learn = []
-        for state in states:
-            if state not in guess:
-                states_to_learn.append(state)
-                new_data = pandas.DataFrame(states_to_learn)
-                new_data.to_csv("states_to_learn.csv")
+        states_to_learn = [state for state in states if state not in guess]
+        new_data = pandas.DataFrame(states_to_learn)
+        new_data.to_csv("states_to_learn.csv")
 
         break
 
